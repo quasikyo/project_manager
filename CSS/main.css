@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -7,13 +7,14 @@
 }
 
 body {
+  /* TODO: resizing issue with the background */
   width: 100vw;
   max-width: 100%;
   height: 100vh;
   max-height: 100%;
   font-family: Roboto;
-  background: -webkit-gradient(linear, left top, right bottom, from(#fc28a8), to(#03edf9));
-  background: linear-gradient(to bottom right, #fc28a8, #03edf9);
+  background: -webkit-gradient(linear, left top, right bottom, from(#3c0b42), to(#41015f)) no-repeat;
+  background: linear-gradient(to bottom right, #3c0b42, #41015f) no-repeat;
 }
 
 /* I don't want to bother adding the p-1 class to body every time. */
@@ -23,6 +24,7 @@ body, .p-1 {
 
 #mainHeader {
   font-size: 5rem;
+  font-weight: 700;
   /* Hurts to look at - make it so main header pops out without killing people's eyes */
   text-shadow: 0 0 5px black;
 }
@@ -46,7 +48,7 @@ h3 {
 } */
 .sub-header {
   font-size: 1rem;
-  color: #002334;
+  color: #008bcd;
 }
 
 .flex {
@@ -59,9 +61,14 @@ h3 {
           flex-flow: row wrap;
 }
 
-.just-cont-btwn {
+.flex.just-cont-btwn {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.flex.just-cont-around {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,21 +1,9 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 
-// Listen for app to be ready
+//=== === === APP.ON === === ===//
+
 app.on('ready', () => {
-    // Create new window
-    mainWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-    // Load HTML into window
-    mainWindow.loadURL(`file://${__dirname}/index.html`);
-
-    // Close all windows when main window is closed
-    mainWindow.on('closed', () => {
-		mainWindow = null;
-        app.quit();
-	});
+    createMainWindow();
 });
 
 app.on('window-all-closed', () => {
@@ -23,3 +11,27 @@ app.on('window-all-closed', () => {
 		app.quit();
 	}
 });
+
+//=== === === IPCMAIN.ON === === ===//
+
+ipcMain.on('open-box', (event, payload) => {
+	console.log(payload);
+});
+
+//=== === === WINDOW CREATORS === === ===//
+
+function createMainWindow() {
+	// Create new window
+    mainWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+    // Load HTML into window
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    // Close all windows when main window is closed
+    mainWindow.on('closed', () => {
+		mainWindow = null;
+        app.quit();
+	});
+}
