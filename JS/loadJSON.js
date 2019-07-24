@@ -1,4 +1,6 @@
 const fs = require('fs');
+const electron = require('electron');
+const { ipcRenderer } = electron;
 
 renderJSON('project');
 renderJSON('resource');
