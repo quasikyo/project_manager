@@ -1,0 +1,9 @@
+{
+	"asd": {
+		"name": "Visual Studio Code",
+		"desc": "",
+		"type": "Editor",
+		"made": ["Projects"],
+		"usedWithRes": ["Resources"]
+	}
+}

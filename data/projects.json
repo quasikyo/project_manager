@@ -2,11 +2,8 @@
 	"ik2t4cr": {
 		"name":  "Project Manager",
 		"desc": "Desktop application written with browser technology using Electron.",
-		"resUsed": [
-			"sdfv34"
-		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
+		"resUsed": ["sdfv34"],
+		"madeWith": ["Software"],
 		"status": "in progress"
 	},
 	"ik2t4123cr": {
@@ -15,8 +12,6 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
 		"status": "in progress"
 	},
 	"ik2t4112323cr": {
@@ -25,8 +20,6 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
 		"status": "in progress"
 	},
 	"ik2t12312314112323cr": {
@@ -35,8 +28,6 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
 		"status": "in progress"
 	},
 	"ik2t1234cr": {
@@ -45,48 +36,6 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
 		"status": "in progress"
-	},
-	"ik2t4123c123r": {
-		"name":  "Project Manager",
-		"desc": "Desktop application written with browser technology using Electron.",
-		"resUsed": [
-			"sdfv34"
-		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
-		"status": "in progress"
-	},
-	"ik2t4112312323cr": {
-		"name":  "Project Manager",
-		"desc": "Desktop application written with browser technology using Electron.",
-		"resUsed": [
-			"sdfv34"
-		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
-		"status": "finished"
-	},
-	"ik2t12312314123112323cr": {
-		"name":  "Project Manager",
-		"desc": "Desktop application written with browser technology using Electron.",
-		"resUsed": [
-			"sdfv34"
-		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
-		"status": "finished"
-	},
-	"ik2t12123312314123112323cr": {
-		"name":  "Project Manager",
-		"desc": "Desktop application written with browser technology using Electron.",
-		"resUsed": [
-			"sdfv34"
-		],
-		"url": null,
-		"directory": "file://C:/Users/MR/Desktop/Work Folder/Web Development/Learning and Practice/Frameworks/Electron/project_manager",
-		"status": "finished"
 	}
 }

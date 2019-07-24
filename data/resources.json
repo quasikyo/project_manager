@@ -3,18 +3,24 @@
 		"name": "Bootstrap",
 		"ver": "4.3.1",
 		"stack": "Frontend",
-		"type": "Library"
+		"type": "Library",
+		"pUsed": ["Projects"],
+		"sUsed": ["Software"]
 	},
 	"sdfv34": {
 		"name": "Electron",
 		"ver": "5.0.7",
 		"stack": "Fullstack",
-		"type": "Framework"
+		"type": "Framework",
+		"pUsed": ["Projects"],
+		"sUsed": ["Software"]
 	},
 	"sdawioefv34": {
 		"name": "Vue",
 		"ver": "2.6.10",
 		"stack": "Frontend",
-		"type": "Framework"
+		"type": "Framework",
+		"pUsed": ["Projects"],
+		"sUsed": ["Software"]
 	}
 }
