@@ -1,0 +1,14 @@
+{
+	"name": "project_manager",
+	"version": "1.0.0",
+	"description": "A desktop app to manage my projects written with just Electron.",
+	"main": "main.js",
+	"scripts": {
+		"start": "electron ."
+	},
+	"author": "Michael Rehman",
+	"license": "ISC",
+	"dependencies": {
+		"electron": "^5.0.7"
+	}
+}

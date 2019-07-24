@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap');
+
+$prim-grad-color: #fc28a8;
+$secd-grad-color: #03edf9;
+$prim-color: #005780;
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100vw;
+	max-width: 100%;
+	height: 100vh;
+	max-height: 100%;
+	font-family: Roboto;
+	background: linear-gradient(to bottom right, $prim-grad-color, $secd-grad-color);
+}
+
+/* I don't want to bother adding the p-1 class to body every time. */
+body, .p-1 {
+	padding: 1rem;
+}
+
+#mainHeader {
+	font-size: 5rem;
+	/* Hurts to look at - make it so main header pops out without killing people's eyes */
+	text-shadow: 0 0 5px darken($prim-color, 50%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $prim-color;
+	font-family: "Roboto Mono", Roboto;
+}
+/* TODO: Tweak font sizes */
+/* h1 {
+	font-size: 4rem;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 2rem;
+} */
+
+.sub-header {
+	font-size: 1rem;
+	color: darken($prim-color, 15%)
+}
+
+.flex {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.just-cont-btwn {
+	justify-content: space-between;
+}

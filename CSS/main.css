@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100%;
+  font-family: Roboto;
+  background: -webkit-gradient(linear, left top, right bottom, from(#fc28a8), to(#03edf9));
+  background: linear-gradient(to bottom right, #fc28a8, #03edf9);
+}
+
+/* I don't want to bother adding the p-1 class to body every time. */
+body, .p-1 {
+  padding: 1rem;
+}
+
+#mainHeader {
+  font-size: 5rem;
+  /* Hurts to look at - make it so main header pops out without killing people's eyes */
+  text-shadow: 0 0 5px black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #005780;
+  font-family: "Roboto Mono", Roboto;
+}
+
+/* TODO: Tweak font sizes */
+/* h1 {
+	font-size: 4rem;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 2rem;
+} */
+.sub-header {
+  font-size: 1rem;
+  color: #002334;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.just-cont-btwn {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+/*# sourceMappingURL=main.css.map */
