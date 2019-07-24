@@ -13,6 +13,13 @@ app.on('ready', () => {
 
     // Close all windows when main window is closed
     mainWindow.on('closed', () => {
+		mainWindow = null;
         app.quit();
 	});
+});
+
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') {
+		app.quit();
+	}
 });

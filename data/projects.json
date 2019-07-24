@@ -37,5 +37,37 @@
 			"sdfv34"
 		],
 		"status": "in progress"
+	},
+	"ik2ta1234cr": {
+		"name":  "Project Manager",
+		"desc": "Desktop application written with browser technology using Electron.",
+		"resUsed": [
+			"sdfv34"
+		],
+		"status": "in progress"
+	},
+	"ik2t1s234cr": {
+		"name":  "Project Manager",
+		"desc": "Desktop application written with browser technology using Electron.",
+		"resUsed": [
+			"sdfv34"
+		],
+		"status": "finished"
+	},
+	"ik2t1234dcr": {
+		"name":  "Project Manager",
+		"desc": "Desktop application written with browser technology using Electron.",
+		"resUsed": [
+			"sdfv34"
+		],
+		"status": "finished"
+	},
+	"ik2t1234casr": {
+		"name":  "Project Manager",
+		"desc": "Desktop application written with browser technology using Electron.",
+		"resUsed": [
+			"sdfv34"
+		],
+		"status": "finished"
 	}
 }

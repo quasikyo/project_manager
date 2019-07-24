@@ -1,7 +1,8 @@
 {
 	"gyik74s": {
 		"name": "Bootstrap",
-		"ver": "4.3.1",
+		"desc": "some description",
+		"versions": ["4.3.1"],
 		"stack": "Frontend",
 		"type": "Library",
 		"pUsed": ["Projects"],
@@ -9,7 +10,8 @@
 	},
 	"sdfv34": {
 		"name": "Electron",
-		"ver": "5.0.7",
+		"desc": "some description",
+		"versions": ["5.0.7"],
 		"stack": "Fullstack",
 		"type": "Framework",
 		"pUsed": ["Projects"],
@@ -17,7 +19,8 @@
 	},
 	"sdawioefv34": {
 		"name": "Vue",
-		"ver": "2.6.10",
+		"desc": "some description",
+		"versions": ["2.6.10"],
 		"stack": "Frontend",
 		"type": "Framework",
 		"pUsed": ["Projects"],
