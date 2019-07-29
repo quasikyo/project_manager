@@ -14,83 +14,72 @@ renderJSON(['project', 'resource', 'software']);
 
 //=== === === HANDLE ALL ACTIONS TO RENDER TO DOM === === ===//
 
-// Render everything
+// Render everything from JSON files
 function renderJSON(types) {
 	types.forEach(async function(type) {
 		let json;
-		if (type === 'project') { json = await getProjects(); }
-		else if (type === 'resource') { json = await getResources(); }
-		else if (type === 'software') { json = await getSoftware(); }
+		if (type === 'project') { json = await getJSON('./data/projects.json'); }
+		else if (type === 'resource') { json = await getJSON('./data/resources.json'); }
+		else if (type === 'software') { json = await getJSON('./data/software.json'); }
 		else {
-			console.error(
-				'Invalid renderJSON type. Accepted types are "project", "resource", "software".'
-			);
+			console.error('Invalid renderJSON type. Accepted types are "project", "resource", "software".');
 			return;
 		}
 
 		// Create elements based on json files and add to DOM
 		for (const id in json) {
+			// Single object from JSON
 			const item = json[id];
-			const article = createArticle(item);
-			// for projects.json
-			if (item.status === 'finished') { lists.finProjs.appendChild(article); }
-			else if (item.status === 'in progress') { lists.ipProjs.appendChild(article); }
-			// Only resources.json has a versions field - for resources.json
-			else if (typeof item.versions === 'object') {
-				article.querySelector('h3.header').appendChild(createStackType(item));
-				lists.resList.appendChild(article);
-			}
-			// Same concept as above - for software.json
-			else if (typeof item.usedWithRes === 'object') { lists.softList.appendChild(article); }
+			// Create HTML based on JSON
+			const article = createArticle(item, type, id);
+			// Add HTML to DOM
+			appendToList(article, item);
 		}
 	});
-	// Check for empty lists - DOESN'T WORK DUE TO ASYNC/AWAIT; this stuff gets run during the await
-	/* for (const key in lists) {
-		list = lists[key];
-		if (list.childElementCount === 0) {
-			list.appendChild(createArticle(null));
-		}
-	} */
 }
 
-// Render new JSON objects
-function renderNewJSON(newObj) {
+// Render new JSON objects so you can avoid reloading to see changes
+function addToRender(newObj) {
+	// Create HTML based on JSON
 	const article = createArticle(newObj);
+	// Add HTML to DOM
+	appendToList(article, newObj);
+}
+
+// Remove JSON from render to avoid reloading
+function removeFromRender(oldObj) {
+	// Create HTML to be used for comparison
+	const article = createArticle(oldObj);
+}
+
+// Handle which list it get appended to
+// @param html    - HTML to be added
+// @param jsonObj - the JSON data to be used to identify which list
+function appendToList(html, jsonObj) {
 	// for projects.json
-	if (newObj.status === 'finished') { lists.finProjs.appendChild(article); }
-	else if (newObj.status === 'in progress') { lists.ipProjs.appendChild(article); }
+	// !item.completed doesn't work due to how JS evaluates null and undefined as false
+	if (jsonObj.completed) { lists.finProjs.appendChild(html); }
+	else if (jsonObj.completed === false) { lists.ipProjs.appendChild(html); }
 	// Only resources.json has a versions field - for resources.json
-	else if (typeof newObj.versions === 'object') {
-		article.querySelector('h3.header').appendChild(createStackType(newObj));
-		lists.resList.appendChild(article);
+	else if (typeof jsonObj.versions === 'object') {
+		html.querySelector('h3.header').appendChild(createStackType(jsonObj));
+		lists.resList.appendChild(html);
 	}
 	// Same concept as above - for software.json
-	else if (typeof newObj.usedWithRes === 'object') { lists.softList.appendChild(article); }
+	else if (typeof jsonObj.usedWithRes === 'object') { lists.softList.appendChild(html); }
 }
 
 //=== === === HANDLE @click === === ===//
 
 function openPage(event) {
-	ipcRenderer.send('open-box', 'click');
+	ipcRenderer.send('open-box', event.currentTarget.querySelector('h3').textContent);
 }
 
 //=== === === GET JSON === === ===//
 
-async function getProjects() {
-	const resp = await fetch('./data/projects.json');
+async function getJSON(filePath) {
+	const resp = await fetch(filePath);
 	const data = await resp.json();
-	return data;
-}
-
-async function getResources() {
-	const resp = await fetch('./data/resources.json');
-	const data = await resp.json();
-	return data;
-}
-
-async function getSoftware() {
-	const resp = await fetch('./data/software.json');
-	const data = resp.json();
 	return data;
 }
 
@@ -100,10 +89,12 @@ function createElem(elem) {
 	return document.createElement(elem);
 }
 
-function createArticle(getTextFor) {
-	// Create article.box, append, and add @click listener
+function createArticle(getTextFor, type, id) {
+	// Create article.box, set data attributes, and add @click listener
 	const article = createElem('article');
 	article.className = 'box';
+	article.setAttribute('data-type', type);
+	article.setAttribute('data-id', id);
 	article.addEventListener('click', openPage);
 	// Create h3.header and append
 	const header = createElem('h3');

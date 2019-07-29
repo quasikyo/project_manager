@@ -9,13 +9,12 @@ $prim-color: #005780;
 	margin: 0;
 	padding: 0;
 }
+:root {
+	min-width: 100%;
+	min-height: 100%;
+}
 
 body {
-	/* TODO: resizing issue with the background */
-	width: 100vw;
-	max-width: 100%;
-	height: 100vh;
-	max-height: 100%;
 	font-family: Roboto;
 	background: linear-gradient(to bottom right, $prim-grad-color, $secd-grad-color) no-repeat;
 }
