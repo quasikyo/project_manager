@@ -39,17 +39,31 @@ function renderJSON(types) {
 }
 
 // Render new JSON objects so you can avoid reloading to see changes
-function addToRender(newObj) {
+function addToRender(obj) {
 	// Create HTML based on JSON
-	const article = createArticle(newObj);
+	const article = createArticle(obj);
 	// Add HTML to DOM
-	appendToList(article, newObj);
+	appendToList(article, obj);
 }
 
 // Remove JSON from render to avoid reloading
-function removeFromRender(oldObj) {
-	// Create HTML to be used for comparison
-	const article = createArticle(oldObj);
+function removeFromRender(objId) {
+	// Go through all every HTML list (could be better, only go through the list it is in)
+	// Also, this makes all the files have shared ids (we can't use the same id in a different file)
+	for (const key in lists) {
+		list = lists[key];
+		Array.from(list.children).forEach((listItem) => {
+			if (listItem.dataset.id === objId) {
+				list.removeChild(listItem);
+			}
+		});
+
+		// TODO: doesn't work but I want it to
+		// const asArray = [...list.children];
+		// Filter will remove items if evaluation is false
+		// const newArray = asArray.filter((listItem) => { listItem.dataset.id !== objId });
+		// list.children = newArray;
+	}
 }
 
 // Handle which list it get appended to
@@ -60,13 +74,11 @@ function appendToList(html, jsonObj) {
 	// !item.completed doesn't work due to how JS evaluates null and undefined as false
 	if (jsonObj.completed) { lists.finProjs.appendChild(html); }
 	else if (jsonObj.completed === false) { lists.ipProjs.appendChild(html); }
-	// Only resources.json has a versions field - for resources.json
-	else if (typeof jsonObj.versions === 'object') {
+	else if (html.dataset.type === 'resource') {
 		html.querySelector('h3.header').appendChild(createStackType(jsonObj));
 		lists.resList.appendChild(html);
 	}
-	// Same concept as above - for software.json
-	else if (typeof jsonObj.usedWithRes === 'object') { lists.softList.appendChild(html); }
+	else if (html.dataset.type === 'software') { lists.softList.appendChild(html); }
 }
 
 //=== === === HANDLE @click === === ===//
@@ -93,8 +105,8 @@ function createArticle(getTextFor, type, id) {
 	// Create article.box, set data attributes, and add @click listener
 	const article = createElem('article');
 	article.className = 'box';
-	article.setAttribute('data-type', type);
-	article.setAttribute('data-id', id);
+	article.dataset.type = type;   //TODO: distinguish btw finished and not finished projects
+	article.dataset.id = id;
 	article.addEventListener('click', openPage);
 	// Create h3.header and append
 	const header = createElem('h3');

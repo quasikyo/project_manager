@@ -15,18 +15,15 @@ function addToJSON(filePath, newObjId, newObjContent) {
 		}
 	});
 	// call method in renderJSON.js
-	// addToRender(newObjContent);
+	addToRender(newObjContent);
 }
 
 function removeFromJSON(filePath, objId) {
-	let objContent;
 	fs.readFile(filePath, 'utf8', (err, data) => {
 		if (err) { console.error(err); }
 		else {
 			// Convert JSON to string
 			const fileContents = JSON.parse(data);
-			// Create copy of object contents
-			objContent = fileContents[objId];
 			// Delete object from JSON
 			delete fileContents[objId];
 			// Convert string to JSON
@@ -36,5 +33,5 @@ function removeFromJSON(filePath, objId) {
 		}
 	});
 	// call method in renderJSON.js
-	removeFromRender(objContent);
+	removeFromRender(objId);
 }
