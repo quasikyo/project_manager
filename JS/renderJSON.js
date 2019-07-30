@@ -1,6 +1,3 @@
-const electron = require('electron');
-const { ipcRenderer } = electron;
-
 // Collect necessary DOM references
 const lists = {
 	finProjs: document.querySelector('#finishedProjects .projects-list'),
@@ -75,7 +72,7 @@ function appendToList(html, jsonObj) {
 	if (jsonObj.completed) { lists.finProjs.appendChild(html); }
 	else if (jsonObj.completed === false) { lists.ipProjs.appendChild(html); }
 	else if (html.dataset.type === 'resource') {
-		html.querySelector('h3.header').appendChild(createStackType(jsonObj));
+		html.querySelector('header').appendChild(createStackType(jsonObj));
 		lists.resList.appendChild(html);
 	}
 	else if (html.dataset.type === 'software') { lists.softList.appendChild(html); }
@@ -84,7 +81,7 @@ function appendToList(html, jsonObj) {
 //=== === === HANDLE @click === === ===//
 
 function openPage(event) {
-	ipcRenderer.send('open-box', event.currentTarget.querySelector('h3').textContent);
+	require('electron').ipcRenderer.send('open-box', event.currentTarget.querySelector('h3').textContent);
 }
 
 //=== === === GET JSON === === ===//
@@ -108,11 +105,14 @@ function createArticle(getTextFor, type, id) {
 	article.dataset.type = type;   //TODO: distinguish btw finished and not finished projects
 	article.dataset.id = id;
 	article.addEventListener('click', openPage);
-	// Create h3.header and append
-	const header = createElem('h3');
-	header.className = `header flex just-cont-btwn`;
-	header.textContent = getTextFor !== null ? getTextFor.name : 'Nothing Found';
+	// Create header and append
+	const header = createElem('header');
+	header.className = `header flex just-cont-btwn align-items-end`;
 	article.appendChild(header);
+	// Create h3 and append
+	const h3 = createElem('h3');
+	h3.textContent = getTextFor !== null ? getTextFor.name : 'Nothing Found';
+	header.appendChild(h3);
 	// Create div.content and append
 	const content = createElem('div');
 	content.className = 'content';
@@ -129,7 +129,7 @@ function createArticle(getTextFor, type, id) {
 function createStackType(getTextFor) {
 	// Create div.stack-type and append
 	const stackType = createElem('div');
-	stackType.className = `stack-type sub-header`;
+	stackType.className = `stack-type sub-header sh-bold`;
 	// Create div.stack and append
 	const stack = createElem('span');
 	stack.className = 'stack';

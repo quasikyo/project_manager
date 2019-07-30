@@ -51,6 +51,10 @@ h3 {
   color: #008bcd;
 }
 
+.sub-header.sh-bold {
+  font-weight: bold;
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -70,5 +74,11 @@ h3 {
 .flex.just-cont-around {
   -ms-flex-pack: distribute;
       justify-content: space-around;
+}
+
+.flex.align-items-end {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 /*# sourceMappingURL=main.css.map */

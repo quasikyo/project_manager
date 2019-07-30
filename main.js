@@ -5,7 +5,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 //=== === === WINDOW REFERENCES === === ===//
 
 let mainWindow;
-let projWindow;
+let detailsWindow;
 
 //=== === === APP.ON === === ===//
 
@@ -22,7 +22,7 @@ app.on('window-all-closed', () => {
 //=== === === IPCMAIN.ON === === ===//
 
 ipcMain.on('open-box', (event, payload) => {
-	createProjWindow(payload);
+	createDetailsWindow(payload);
 });
 
 //=== === === WINDOW CREATORS === === ===//
@@ -50,25 +50,29 @@ function createMainWindow() {
 	});
 }
 
-function createProjWindow(payload) {
+function createDetailsWindow(payload) {
 	// Create Window
-	projWindow = new BrowserWindow({
+	detailsWindow = new BrowserWindow({
 		width: 1200,
 		height: 1000,
+		parent: mainWindow,
+		modal: false,
 		show: false,
         webPreferences: {
             nodeIntegration: true
         }
 	});
 	// Load HTML
-	projWindow.loadURL(`file://${__dirname}/HTML/newWindow.html`);
+	detailsWindow.loadURL(`file://${__dirname}/HTML/detailsWindow.html`);
 	// Once ready, send the data and show
-	projWindow.once('ready-to-show', () => {
-		projWindow.webContents.send('valueName', payload);
-		projWindow.show();
+	detailsWindow.once('ready-to-show', () => {
+		detailsWindow.webContents.send('valueName', payload);
+		detailsWindow.show();
 	});
 	// Garbage collection
-	projWindow.on('closed', () => {
-		projWindow = null;
+	detailsWindow.on('closed', () => {
+		detailsWindow = null;
 	});
 }
+
+//=== === === MENU === === ===//
