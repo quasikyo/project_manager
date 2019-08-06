@@ -2,7 +2,7 @@
 
 $prim-grad-color: #3c0b42;
 $secd-grad-color: #41015f;
-$prim-color: #005780;
+$prim-color: #206f94;
 
 * {
 	box-sizing: border-box;
@@ -25,10 +25,11 @@ body, .p-1 {
 }
 
 #mainHeader {
-	font-size: 5rem;
-	font-weight: 700;
-	/* Hurts to look at - make it so main header pops out without killing people's eyes */
-	text-shadow: 0 0 5px darken($prim-color, 50%);
+	h1 {
+		font-size: 5rem;
+		font-weight: 700;
+		text-shadow: 0 0 5px darken($prim-color, 50%);
+	}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,7 +66,7 @@ h3 {
 	&.just-cont-around {
 		justify-content: space-around;
 	}
-	&.align-items-end {
-		align-items: flex-end;
+	&.align-items-cent {
+		align-items: center;
 	}
 }

@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 // ipcRenderer for sending events to ipcMain and for retrieving values sent to windows
-// ipcMain for receiving evtns sent by ipcRenderer
+// ipcMain for receiving events sent by ipcRenderer
 
 //=== === === WINDOW REFERENCES === === ===//
 
@@ -38,7 +38,7 @@ function createMainWindow() {
         }
     });
     // Load HTML into window
-	mainWindow.loadURL(`file://${__dirname}/index.html`);
+	mainWindow.loadURL(`file://${__dirname}/HTML/index.html`);
 	// Show when ready
 	mainWindow.once('ready-to-show', () => {
 		mainWindow.show();
@@ -66,7 +66,7 @@ function createDetailsWindow(payload) {
 	detailsWindow.loadURL(`file://${__dirname}/HTML/detailsWindow.html`);
 	// Once ready, send the data and show
 	detailsWindow.once('ready-to-show', () => {
-		detailsWindow.webContents.send('valueName', payload);
+		detailsWindow.webContents.send('typeAndId', payload);
 		detailsWindow.show();
 	});
 	// Garbage collection

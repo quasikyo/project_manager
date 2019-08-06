@@ -22,15 +22,14 @@ body, .p-1 {
   padding: 1rem;
 }
 
-#mainHeader {
-  font-size: 5rem;
-  font-weight: 700;
-  /* Hurts to look at - make it so main header pops out without killing people's eyes */
-  text-shadow: 0 0 5px black;
+#mainHeader h1 {
+	font-size: 5rem;
+	font-weight: 700;
+	text-shadow: 0 0 5px black;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #005780;
+  color: #206f94;
   font-family: "Roboto Mono", Roboto;
 }
 
@@ -48,7 +47,7 @@ h3 {
 } */
 .sub-header {
   font-size: 1rem;
-  color: #008bcd;
+  color: #2f9ed2;
 }
 
 .sub-header.sh-bold {
@@ -76,9 +75,9 @@ h3 {
       justify-content: space-around;
 }
 
-.flex.align-items-end {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+.flex.align-items-cent {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=main.css.map */

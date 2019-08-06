@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Project Manager</title>
+		<link rel="stylesheet" href="../CSS/main.css">
+		<link rel="stylesheet" href="../CSS/index.css">
+	</head>
+	<body>
+		<!-- TODO: use this template instead of the clunk JS methods -->
+		<!-- <template id="listEntry">
+			<article class="box" onclick="openPage">
+				<header class="header flex just-cont-btwn align-items-cent">
+					<h3></h3>
+					<div class="stack-type sub-header sh-bold">
+						<span class="stack"></span>
+						<span class="type"></span>
+					</div>
+					<div class="content">
+						<p class="desc"></p>
+					</div>
+				</header>
+			</article>
+		</template> -->
+
+		<header id="mainHeader">
+			<h1>Project Manager</h1>
+		</header>
+
+		<main>
+			<section id="finishedProjects">
+				<h2>Finished Projects</h2>
+				<div class="projects-list flex just-cont-around"></div>
+			</section>
+
+			<section id="ipProjects">
+				<h2>In Progress Projects</h2>
+				<div class="projects-list flex just-cont-around"></div>
+			</section>
+
+			<section id="resources">
+				<h2>Resources <span class="sub-header">Frameworks/Libraries/Toolkits</span></h2>
+				<div class="resources-list flex just-cont-around"></div>
+			</section>
+
+			<section id="software">
+				<h2>Software <span class="sub-header">IDEs/Editors/Tools</span></h2>
+				<div class="software-list flex just-cont-around"></div>
+			</section>
+		</main>
+
+		<script src="../JS/getJSON.js"></script>
+		<script src="../JS/renderJSON.js"></script>
+		<script src="../JS/updateJSON.js"></script>
+		<script src="../JS/createJSON.js"></script>
+	</body>
+</html>

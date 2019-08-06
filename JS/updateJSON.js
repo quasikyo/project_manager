@@ -28,7 +28,7 @@ function removeFromJSON(filePath, objId) {
 			delete fileContents[objId];
 			// Convert string to JSON
 			const json = JSON.stringify(fileContents);
-			// Rewrite the file with applied chagnes
+			// Rewrite the file with applied changes
 			fs.writeFile(filePath, json, 'utf8', () => {});
 		}
 	});

@@ -13,20 +13,16 @@ renderJSON(['project', 'resource', 'software']);
 
 // Render everything from JSON files
 function renderJSON(types) {
-	types.forEach(async function(type) {
-		let json;
-		if (type === 'project') { json = await getJSON('./data/projects.json'); }
-		else if (type === 'resource') { json = await getJSON('./data/resources.json'); }
-		else if (type === 'software') { json = await getJSON('./data/software.json'); }
-		else {
-			console.error('Invalid renderJSON type. Accepted types are "project", "resource", "software".');
-			return;
-		}
-
+	types.forEach(async (type) => {
+		const json = await getJSON(type)
 		// Create elements based on json files and add to DOM
 		for (const id in json) {
 			// Single object from JSON
 			const item = json[id];
+			// Set finished and not finished project type
+			// the '=== false' is required cause JS will run an else clause if it null/undefined
+			if (item.completed) { type = 'project-f'; }
+			else if (item.completed === false) { type = 'project-nf'; }
 			// Create HTML based on JSON
 			const article = createArticle(item, type, id);
 			// Add HTML to DOM
@@ -64,8 +60,6 @@ function removeFromRender(objId) {
 }
 
 // Handle which list it get appended to
-// @param html    - HTML to be added
-// @param jsonObj - the JSON data to be used to identify which list
 function appendToList(html, jsonObj) {
 	// for projects.json
 	// !item.completed doesn't work due to how JS evaluates null and undefined as false
@@ -81,15 +75,10 @@ function appendToList(html, jsonObj) {
 //=== === === HANDLE @click === === ===//
 
 function openPage(event) {
-	require('electron').ipcRenderer.send('open-box', event.currentTarget.querySelector('h3').textContent);
-}
-
-//=== === === GET JSON === === ===//
-
-async function getJSON(filePath) {
-	const resp = await fetch(filePath);
-	const data = await resp.json();
-	return data;
+	require('electron').ipcRenderer.send(
+		'open-box',
+		event.currentTarget.dataset.type+ ', ' + event.currentTarget.dataset.id
+	);
 }
 
 //=== === === CREATE DOM ELEMENTS === === ===//
@@ -98,16 +87,18 @@ function createElem(elem) {
 	return document.createElement(elem);
 }
 
+// TODO: instead of creating the DOM elements in JS
+// use a template tag
 function createArticle(getTextFor, type, id) {
 	// Create article.box, set data attributes, and add @click listener
 	const article = createElem('article');
 	article.className = 'box';
-	article.dataset.type = type;   //TODO: distinguish btw finished and not finished projects
+	article.dataset.type = type;
 	article.dataset.id = id;
 	article.addEventListener('click', openPage);
 	// Create header and append
 	const header = createElem('header');
-	header.className = `header flex just-cont-btwn align-items-end`;
+	header.className = `header flex just-cont-btwn align-items-cent`;
 	article.appendChild(header);
 	// Create h3 and append
 	const h3 = createElem('h3');
