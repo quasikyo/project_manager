@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 // ipcRenderer for sending events to ipcMain and for retrieving values sent to windows
 // ipcMain for receiving events sent by ipcRenderer
 
@@ -11,6 +11,9 @@ let detailsWindow;
 
 app.on('ready', () => {
 	createMainWindow();
+
+	const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+    Menu.setApplicationMenu(mainMenu);
 });
 
 app.on('window-all-closed', () => {
@@ -75,4 +78,53 @@ function createDetailsWindow(payload) {
 	});
 }
 
+function createNewWindow(type) {
+	console.log(type);
+}
+
 //=== === === MENU === === ===//
+const mainMenuTemplate = [
+	{
+		label: 'File',
+		submenu: [
+			{
+				label: 'Quit',
+				accelerator: 'CmdOrCtrl + Q',
+				click() {
+					app.quit();
+				}
+			}
+		]
+	},
+	{
+		label: 'New',
+		submenu: [
+			{
+				label: 'Project',
+				accelerator: 'CmdOrCtrl + P',
+				click() {
+					createNewWindow('project');
+				}
+			},
+			{
+				label: 'Resource',
+				accelerator: 'CmdOrCtrl + R',
+				click() {
+					createNewWindow('resource');
+				}
+			},
+			{
+				label: 'Software/Tool',
+				accelerator: 'CmdOrCtrl + s',
+				click() {
+					createNewWindow('software');
+				}
+			}
+		]
+	}
+];
+
+// Because macOS does something I don't remmeber
+if (process.platform === 'darwin') {
+	mainMenuTemplate.unshift({});
+}
