@@ -16,7 +16,8 @@ $prim-color: #206f94;
 
 body {
 	font-family: Roboto;
-	background: linear-gradient(to bottom right, $prim-grad-color, $secd-grad-color) no-repeat;
+	/* Gradient pulled from: https://www.gradientmagic.com/ */
+	background: linear-gradient(to bottom left, rgb(149, 10, 155) 0%, rgb(149, 10, 155) 9%,rgb(120, 16, 136) 9%, rgb(120, 16, 136) 13%,rgb(178, 3, 174) 13%, rgb(178, 3, 174) 32%,rgb(91, 23, 117) 32%, rgb(91, 23, 117) 42%,rgb(32, 36, 79) 42%, rgb(32, 36, 79) 46%,rgb(61, 30, 98) 46%, rgb(61, 30, 98) 70%,rgb(3, 43, 60) 70%, rgb(3, 43, 60) 100%)
 }
 
 /* I don't want to bother adding the p-1 class to body every time. */
@@ -36,18 +37,6 @@ h1, h2, h3, h4, h5, h6 {
 	color: $prim-color;
 	font-family: "Roboto Mono", Roboto;
 }
-/* TODO: Tweak font sizes */
-/* h1 {
-	font-size: 4rem;
-}
-
-h2 {
-	font-size: 3rem;
-}
-
-h3 {
-	font-size: 2rem;
-} */
 
 .sub-header {
 	font-size: 1rem;
@@ -57,16 +46,18 @@ h3 {
 	}
 }
 
-.flex {
-	display: flex;
-	flex-flow: row wrap;
-	&.just-cont-btwn {
-		justify-content: space-between;
-	}
-	&.just-cont-around {
-		justify-content: space-around;
-	}
-	&.align-items-cent {
-		align-items: center;
-	}
-}
+// Leaving this commented out until I need to use it in multiple places
+// because currently I only need flexbox in one place.
+// .flex {
+// 	display: flex;
+// 	flex-flow: row wrap;
+// 	&.just-cont-btwn {
+// 		justify-content: space-between;
+// 	}
+// 	&.just-cont-around {
+// 		justify-content: space-around;
+// 	}
+// 	&.align-items-cent {
+// 		align-items: center;
+// 	}
+// }

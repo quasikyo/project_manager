@@ -5,5 +5,26 @@
 		"type": "Editor",
 		"made": ["Projects"],
 		"usedWithRes": ["Resources"]
+	},
+	"aasd": {
+		"name": "Visual Studio Code",
+		"desc": "A lightweight code editor developed by Microsoft whose capabilities can be extended even further through the use of extensions.",
+		"type": "Editor",
+		"made": ["Projects"],
+		"usedWithRes": ["Resources"]
+	},
+	"aaasd": {
+		"name": "Visual Studio Code",
+		"desc": "A lightweight code editor developed by Microsoft whose capabilities can be extended even further through the use of extensions.",
+		"type": "Editor",
+		"made": ["Projects"],
+		"usedWithRes": ["Resources"]
+	},
+	"asasdd": {
+		"name": "Visual Studio Code",
+		"desc": "A lightweight code editor developed by Microsoft whose capabilities can be extended even further through the use of extensions.",
+		"type": "Editor",
+		"made": ["Projects"],
+		"usedWithRes": ["Resources"]
 	}
 }

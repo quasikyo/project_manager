@@ -1,20 +1,86 @@
-section .box {
-  width: 30%;
-  margin: 0.5rem 0.5%;
+section > div {
+  margin: 0.5rem 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+@media screen and (min-width: 568px) {
+  section > div {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  section > div {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  section > div {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+.item {
+  position: relative;
   padding: 1rem;
   background-color: rgba(255, 255, 255, 0.65);
-  -webkit-box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.65);
-          box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.65);
+  -webkit-box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.65);
+          box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.65);
   border-radius: 25px;
   -webkit-transition: ease 200ms;
   transition: ease 200ms;
 }
 
-section .box:hover, section .box:focus {
+.item:hover, .item:focus {
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
   border: none !important;
   outline: none !important;
-  -webkit-box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.65);
-          box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.65);
+  -webkit-box-shadow: 0px 3px 15px 3px rgba(255, 255, 255, 0.65);
+          box-shadow: 0px 3px 15px 3px rgba(255, 255, 255, 0.65);
   cursor: pointer;
 }
-/*# sourceMappingURL=index.css.map */
+
+.item .arrow {
+  position: absolute;
+  width: 25px;
+  height: 5px;
+  bottom: 10px;
+  right: 15px;
+  padding: 0.25rem;
+  background: url("../Assets/arrow.svg") no-repeat center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: ease 200ms;
+  transition: ease 200ms;
+}
+
+.item .arrow:focus {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.resources-list header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}

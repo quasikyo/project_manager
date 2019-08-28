@@ -4,7 +4,7 @@
 		"desc": "Desktop application written with browser technology using Electron.",
 		"resUsed": ["sdfv34"],
 		"madeWith": ["Software"],
-		"completed": false
+		"isCompleted": false
 	},
 	"ik2t4123cr": {
 		"name":  "Project Manager",
@@ -12,7 +12,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": false
+		"isCompleted": false
 	},
 	"ik2t4112323cr": {
 		"name":  "Project Manager",
@@ -20,7 +20,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": false
+		"isCompleted": false
 	},
 	"ik2t12312314112323cr": {
 		"name":  "Project Manager",
@@ -28,7 +28,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": false
+		"isCompleted": false
 	},
 	"ik2t1234cr": {
 		"name":  "Project Manager",
@@ -36,7 +36,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": false
+		"isCompleted": false
 	},
 	"ik2ta1234cr": {
 		"name":  "Project Manager",
@@ -44,7 +44,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": false
+		"isCompleted": false
 	},
 	"ik2t1s234cr": {
 		"name":  "Project Manager",
@@ -52,7 +52,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": true
+		"isCompleted": true
 	},
 	"ik2t1234dcr": {
 		"name":  "Project Manager",
@@ -60,7 +60,7 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": true
+		"isCompleted": true
 	},
 	"ik2t1234casr": {
 		"name":  "Project Manager",
@@ -68,6 +68,6 @@
 		"resUsed": [
 			"sdfv34"
 		],
-		"completed": true
+		"isCompleted": true
 	}
 }

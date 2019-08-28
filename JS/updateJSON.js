@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+require('electron').ipcRenderer.on('newJSON', (event, payload) => {
+	// TODO: handle adding the payload to JSON
+});
+
 function addToJSON(filePath, newObjId, newObjContent) {
 	fs.readFile(filePath, 'utf8', (err, data) => {
 		if (err) { console.error(err); }
@@ -14,7 +18,7 @@ function addToJSON(filePath, newObjId, newObjContent) {
 			fs.writeFile(filePath, json, 'utf8', () => {});
 		}
 	});
-	// call method in renderJSON.js
+	// call method in index.js
 	addToRender(newObjContent);
 }
 
@@ -32,6 +36,6 @@ function removeFromJSON(filePath, objId) {
 			fs.writeFile(filePath, json, 'utf8', () => {});
 		}
 	});
-	// call method in renderJSON.js
+	// call method in index.js
 	removeFromRender(objId);
 }

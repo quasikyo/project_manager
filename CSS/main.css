@@ -13,8 +13,9 @@
 
 body {
   font-family: Roboto;
-  background: -webkit-gradient(linear, left top, right bottom, from(#3c0b42), to(#41015f)) no-repeat;
-  background: linear-gradient(to bottom right, #3c0b42, #41015f) no-repeat;
+  /* Gradient pulled from: https://www.gradientmagic.com/ */
+  background: -webkit-gradient(linear, right top, left bottom, from(#950a9b), color-stop(9%, #950a9b), color-stop(9%, #781088), color-stop(13%, #781088), color-stop(13%, #b203ae), color-stop(32%, #b203ae), color-stop(32%, #5b1775), color-stop(42%, #5b1775), color-stop(42%, #20244f), color-stop(46%, #20244f), color-stop(46%, #3d1e62), color-stop(70%, #3d1e62), color-stop(70%, #032b3c), to(#032b3c));
+  background: linear-gradient(to bottom left, #950a9b 0%, #950a9b 9%, #781088 9%, #781088 13%, #b203ae 13%, #b203ae 32%, #5b1775 32%, #5b1775 42%, #20244f 42%, #20244f 46%, #3d1e62 46%, #3d1e62 70%, #032b3c 70%, #032b3c 100%);
 }
 
 /* I don't want to bother adding the p-1 class to body every time. */
@@ -23,9 +24,9 @@ body, .p-1 {
 }
 
 #mainHeader h1 {
-	font-size: 5rem;
-	font-weight: 700;
-	text-shadow: 0 0 5px black;
+  font-size: 5rem;
+  font-weight: 700;
+  text-shadow: 0 0 5px black;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,18 +34,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto Mono", Roboto;
 }
 
-/* TODO: Tweak font sizes */
-/* h1 {
-	font-size: 4rem;
-}
-
-h2 {
-	font-size: 3rem;
-}
-
-h3 {
-	font-size: 2rem;
-} */
 .sub-header {
   font-size: 1rem;
   color: #2f9ed2;
@@ -53,31 +42,3 @@ h3 {
 .sub-header.sh-bold {
   font-weight: bold;
 }
-
-.flex {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-}
-
-.flex.just-cont-btwn {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.flex.just-cont-around {
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.flex.align-items-cent {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-/*# sourceMappingURL=main.css.map */

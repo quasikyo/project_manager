@@ -20,9 +20,9 @@ function renderJSON(types) {
 			// Single object from JSON
 			const item = json[id];
 			// Set finished and not finished project type
-			// the '=== false' is required cause JS will run an else clause if it null/undefined
-			if (item.completed) { type = 'project-f'; }
-			else if (item.completed === false) { type = 'project-nf'; }
+			// !item.isCompleted doesn't work due to how JS evaluates null and undefined as false
+			if (item.isCompleted) { type = 'project-f'; }
+			else if (item.isCompleted === false) { type = 'project-nf'; }
 			// Create HTML based on JSON
 			const article = createArticle(item, type, id);
 			// Add HTML to DOM
@@ -42,7 +42,6 @@ function addToRender(obj) {
 // Remove JSON from render to avoid reloading
 function removeFromRender(objId) {
 	// Go through all every HTML list (could be better, only go through the list it is in)
-	// Also, this makes all the files have shared ids (we can't use the same id in a different file)
 	for (const key in lists) {
 		list = lists[key];
 		Array.from(list.children).forEach((listItem) => {
@@ -50,35 +49,31 @@ function removeFromRender(objId) {
 				list.removeChild(listItem);
 			}
 		});
-
-		// TODO: doesn't work but I want it to
-		// const asArray = [...list.children];
-		// Filter will remove items if evaluation is false
-		// const newArray = asArray.filter((listItem) => { listItem.dataset.id !== objId });
-		// list.children = newArray;
 	}
 }
 
 // Handle which list it get appended to
 function appendToList(html, jsonObj) {
-	// for projects.json
-	// !item.completed doesn't work due to how JS evaluates null and undefined as false
-	if (jsonObj.completed) { lists.finProjs.appendChild(html); }
-	else if (jsonObj.completed === false) { lists.ipProjs.appendChild(html); }
-	else if (html.dataset.type === 'resource') {
+	const type = html.dataset.type;
+	if (type === 'project-f') { lists.finProjs.appendChild(html); }
+	else if (type === 'project-nf') { lists.ipProjs.appendChild(html); }
+	else if (type === 'resource') {
 		html.querySelector('header').appendChild(createStackType(jsonObj));
 		lists.resList.appendChild(html);
 	}
-	else if (html.dataset.type === 'software') { lists.softList.appendChild(html); }
+	else if (type === 'software') { lists.softList.appendChild(html); }
 }
 
 //=== === === HANDLE @click === === ===//
 
 function openPage(event) {
-	require('electron').ipcRenderer.send(
-		'open-box',
-		event.currentTarget.dataset.type+ ', ' + event.currentTarget.dataset.id
-	);
+	// Prevent the dropdown button from firing the event
+	if (event.target.className !== 'arrow') {
+		require('electron').ipcRenderer.send(
+			'open-box',
+			event.currentTarget.dataset.type+ ', ' + event.currentTarget.dataset.id
+		);
+	}
 }
 
 //=== === === CREATE DOM ELEMENTS === === ===//
@@ -92,13 +87,12 @@ function createElem(elem) {
 function createArticle(getTextFor, type, id) {
 	// Create article.box, set data attributes, and add @click listener
 	const article = createElem('article');
-	article.className = 'box';
+	article.className = 'item';
 	article.dataset.type = type;
 	article.dataset.id = id;
 	article.addEventListener('click', openPage);
 	// Create header and append
 	const header = createElem('header');
-	header.className = `header flex just-cont-btwn align-items-cent`;
 	article.appendChild(header);
 	// Create h3 and append
 	const h3 = createElem('h3');
@@ -113,8 +107,15 @@ function createArticle(getTextFor, type, id) {
 	desc.className = 'desc';
 	desc.textContent = getTextFor !== null ? getTextFor.desc : 'This section is empty';
 	content.appendChild(desc);
-
+	// create the conatiner to add the svg as a background to
+	const svgContainer = createElem('button');
+	svgContainer.className = 'arrow';
+	article.appendChild(svgContainer);
 	return article;
+}
+function log() {
+	console.log('please');
+
 }
 
 function createStackType(getTextFor) {
@@ -131,6 +132,5 @@ function createStackType(getTextFor) {
 	type.className = 'type';
 	type.textContent = getTextFor.type;
 	stackType.appendChild(type);
-
 	return stackType;
 }

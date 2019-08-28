@@ -2,16 +2,17 @@ const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 // ipcRenderer for sending events to ipcMain and for retrieving values sent to windows
 // ipcMain for receiving events sent by ipcRenderer
 
+// Set Environment
+process.env.NODE_ENV = 'development';
+
 //=== === === WINDOW REFERENCES === === ===//
 
-let mainWindow;
-let detailsWindow;
+let mainWindow, detailsWindow, addWindow;
 
 //=== === === APP.ON === === ===//
 
 app.on('ready', () => {
 	createMainWindow();
-
 	const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
     Menu.setApplicationMenu(mainMenu);
 });
@@ -26,6 +27,11 @@ app.on('window-all-closed', () => {
 
 ipcMain.on('open-box', (event, payload) => {
 	createDetailsWindow(payload);
+});
+
+ipcMain.on('create-new', (event, payload) => {
+	// forwarding new JSON to mainWindow.html to have updateJSON.js handle it
+	mainWindow.webContents.send('newJSON', payload)
 });
 
 //=== === === WINDOW CREATORS === === ===//
@@ -78,15 +84,41 @@ function createDetailsWindow(payload) {
 	});
 }
 
-function createNewWindow(type) {
-	console.log(type);
+function createAddWindow(type) {
+	addWindow = new BrowserWindow({
+		width: 800,
+		height: 800,
+		parent: mainWindow,
+		modal: false,
+		show: false,
+		webPreferences: {
+			nodeIntegration: true
+		}
+	});
+	addWindow.loadURL(`file://${__dirname}/HTML/addWindow.html`);
+	addWindow.once('ready-to-show', () => {
+		addWindow.webContents.send('type', type);
+		addWindow.show();
+	});
+	// Garbage collection
+	addWindow.on('closed', () => {
+		addWindow = null;
+	});
 }
 
 //=== === === MENU === === ===//
+
 const mainMenuTemplate = [
 	{
 		label: 'File',
 		submenu: [
+			{
+				label: 'Open DevTools',
+				accelerator: 'CmdOrCtrl + Shift + I',
+				click(item, focusedWindow) {
+					focusedWindow.toggleDevTools();
+				}
+			},
 			{
 				label: 'Quit',
 				accelerator: 'CmdOrCtrl + Q',
@@ -103,21 +135,21 @@ const mainMenuTemplate = [
 				label: 'Project',
 				accelerator: 'CmdOrCtrl + P',
 				click() {
-					createNewWindow('project');
+					createAddWindow('project');
 				}
 			},
 			{
 				label: 'Resource',
 				accelerator: 'CmdOrCtrl + R',
 				click() {
-					createNewWindow('resource');
+					createAddWindow('resource');
 				}
 			},
 			{
 				label: 'Software/Tool',
 				accelerator: 'CmdOrCtrl + s',
 				click() {
-					createNewWindow('software');
+					createAddWindow('software');
 				}
 			}
 		]
@@ -127,4 +159,23 @@ const mainMenuTemplate = [
 // Because macOS does something I don't remmeber
 if (process.platform === 'darwin') {
 	mainMenuTemplate.unshift({});
+}
+
+// Add DevTools
+if (process.env.NODE_ENV === 'development') {
+	mainMenuTemplate.push({
+		label: 'DevTools',
+		submenu: [
+			{
+				label: 'Toggle',
+				accelerator: 'CmdOrCtrl + Shift + I',
+				click(item, focusedWindow) {
+					focusedWindow.toggleDevTools();
+				}
+			},
+			{
+				role: 'Reload'
+			}
+		]
+	});
 }
