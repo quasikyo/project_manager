@@ -1,41 +1,43 @@
-const fs = require('fs');
+const { readFile, writeFile } = require('fs');
 
 require('electron').ipcRenderer.on('newJSON', (event, payload) => {
-	// TODO: handle adding the payload to JSON
+	const path = `./data/${payload.type}.json`;
+	// Get the ID
+	let id;
+	for (const key in payload.content) { id = key; break; }
+	addToJSON(path, payload.content[id], id, payload.type);
 });
 
-function addToJSON(filePath, newObjId, newObjContent) {
-	fs.readFile(filePath, 'utf8', (err, data) => {
+function addToJSON(filePath, newObjContent, newObjId, type) {
+	readFile(filePath, {encoding: 'utf8'}, (err, data) => {
 		if (err) { console.error(err); }
 		else {
-			// Convert JSON to string
+			// Convert string to JSON
 			const fileContents = JSON.parse(data);
 			// Define a new key and it's value
 			fileContents[newObjId] = newObjContent;
-			// Convert string to JSON
+			// Convert JSON to string
 			const json = JSON.stringify(fileContents);
 			// Rewrite the file with new addition
-			fs.writeFile(filePath, json, 'utf8', () => {});
+			writeFile(filePath, json, {encoding: 'utf8'}, (err) => { if (err) { console.error(err); } });
+			addToRender(newObjContent, type, newObjId);
 		}
 	});
-	// call method in index.js
-	addToRender(newObjContent);
 }
 
 function removeFromJSON(filePath, objId) {
-	fs.readFile(filePath, 'utf8', (err, data) => {
+	readFile(filePath, {encoding: 'utf8'}, (err, data) => {
 		if (err) { console.error(err); }
 		else {
-			// Convert JSON to string
+			// Convert string to JSON
 			const fileContents = JSON.parse(data);
 			// Delete object from JSON
 			delete fileContents[objId];
-			// Convert string to JSON
+			// Convert JSON to string
 			const json = JSON.stringify(fileContents);
 			// Rewrite the file with applied changes
-			fs.writeFile(filePath, json, 'utf8', () => {});
+			writeFile(filePath, json, {encoding: 'utf8'}, (err) => { if (err) { console.error(err); } });
+			removeFromRender(objId);
 		}
 	});
-	// call method in index.js
-	removeFromRender(objId);
 }

@@ -1,0 +1,14 @@
+@mixin arrowSVG {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	background: url('../assets/arrow.svg') no-repeat center;
+	transition: ease 200ms;
+	&:hover {
+		transition: ease 400ms;
+		transform: rotateY(180deg);
+	}
+	&:focus, &.is-selected {
+		transform: rotateX(180deg);
+	}
+}

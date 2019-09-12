@@ -64,8 +64,6 @@ function createDetailsWindow(payload) {
 	detailsWindow = new BrowserWindow({
 		width: 1200,
 		height: 1000,
-		parent: mainWindow,
-		modal: false,
 		show: false,
         webPreferences: {
             nodeIntegration: true
@@ -88,8 +86,6 @@ function createAddWindow(type) {
 	addWindow = new BrowserWindow({
 		width: 800,
 		height: 800,
-		parent: mainWindow,
-		modal: false,
 		show: false,
 		webPreferences: {
 			nodeIntegration: true
@@ -112,13 +108,6 @@ const mainMenuTemplate = [
 	{
 		label: 'File',
 		submenu: [
-			{
-				label: 'Open DevTools',
-				accelerator: 'CmdOrCtrl + Shift + I',
-				click(item, focusedWindow) {
-					focusedWindow.toggleDevTools();
-				}
-			},
 			{
 				label: 'Quit',
 				accelerator: 'CmdOrCtrl + Q',
@@ -146,7 +135,7 @@ const mainMenuTemplate = [
 				}
 			},
 			{
-				label: 'Software/Tool',
+				label: 'Software',
 				accelerator: 'CmdOrCtrl + s',
 				click() {
 					createAddWindow('software');

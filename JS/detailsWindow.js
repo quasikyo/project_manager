@@ -1,5 +1,5 @@
-const electron = require('electron');
-const { ipcRenderer } = electron;
+const { ipcRenderer } = require('electron');
+const getJSON = require('../JS/getJSON');
 
 ipcRenderer.on('typeAndId', async (event, payload) => {
 	// Get JSON

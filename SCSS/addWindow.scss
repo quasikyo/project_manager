@@ -1,0 +1,32 @@
+@import './libs/arrowSVG';
+
+h3.label {
+	display: flex;
+	align-items: flex-end;
+	cursor: pointer;
+	&:hover .arrow {
+		transition: ease 400ms;
+		transform: rotateY(180deg);
+	}
+	.arrow {
+		@include arrowSVG;
+		padding: 0 1rem;
+	}
+}
+
+.options {
+	max-height: 0;
+	overflow: hidden;
+	transition: 400ms ease;
+	.option input:checked + label {
+		font-weight: bold;
+	}
+}
+
+input {
+	&[type="submit"] {
+		background: black;
+		color: white;
+		cursor: pointer;
+	}
+}

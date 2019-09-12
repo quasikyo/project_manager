@@ -1,0 +1,55 @@
+h3.label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  cursor: pointer;
+}
+
+h3.label:hover .arrow {
+  -webkit-transition: ease 400ms;
+  transition: ease 400ms;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+h3.label .arrow {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: url("../assets/arrow.svg") no-repeat center;
+  -webkit-transition: ease 200ms;
+  transition: ease 200ms;
+  padding: 0 1rem;
+}
+
+h3.label .arrow:hover {
+  -webkit-transition: ease 400ms;
+  transition: ease 400ms;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+h3.label .arrow:focus, h3.label .arrow.is-selected {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+
+.options {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: 400ms ease;
+  transition: 400ms ease;
+}
+
+.options .option input:checked + label {
+  font-weight: bold;
+}
+
+input[type="submit"] {
+  background: black;
+  color: white;
+  cursor: pointer;
+}

@@ -1,35 +1,47 @@
-// @name 			the name
-// @desc 			a description
-// @resUsed 		an array with the IDs of the resources used
-// @madWith 		an array with the IDs of the software used
-// @isCompleted 	a boolean indicating if it is completed
-function createProject(name, desc, resUsed, madeWith, isCompleted) {
+/**
+ * @param {string} name 		the name
+ * @param {string} desc 		a description
+ * @param {boolean} isCompleted a boolean indicating if it is completed
+ * @param {object} resUsed 		an array with the IDs of the resources used
+ * @param {object} madeWith 	an array with the IDs of the software used
+ *
+ * @return {object} A new JSON object representing the details of a project.
+ */
+function createProject(name, desc, isCompleted, resUsed, madeWith) {
 	return {
-		[computeID]: {
-			name, desc, resUsed, madeWith, isCompleted
+		[computeID()]: {
+			name, desc, isCompleted, resUsed, madeWith
 		}
 	}
 }
 
-// @versions 	an array of the versions used
-// @stack 		is it used on the frontend, backend, or both
-// @type 		framework, library, toolkit
-// @pUsed 		an array with the IDs with the projects that use this resource
-// @sUsed 		an array with the IDs with the software that work with this resource
-function createResource(name, desc, versions, stack, type, pUsed, sUsed) {
+/**
+ * @param {string} stack 	is it used on the frontend, backend, or both
+ * @param {string} type 	framework, library, toolkit
+ * @param {object} versions an array of the versions used
+ * @param {object} pUsed 	an array with the IDs with the projects that use this resource
+ * @param {object} sUsed 	an array with the IDs with the software that work with this resource
+ *
+ * @return {object} A new JSON object representing the details of a resource.
+ */
+function createResource(name, desc, stack, type, versions, pUsed, sUsed) {
 	return {
-		[computeID]: {
-			name, desc, versions, stack, type, pUsed, sUsed
+		[computeID()]: {
+			name, desc, stack, type, versions, pUsed, sUsed
 		}
 	}
 }
 
-// @type 			IDE, Editor, Design Tool, etc.
-// @made 			an array with the IDs of the projects this software helped make
-// @usedWithRes 	an array with the IDs of the resources this software works with
+/**
+ * @param {string} type 		IDE, Editor, Design Tool, etc.
+ * @param {object} made 		an array with the IDs of the projects this software helped make
+ * @param {object} usedWithRes 	an array with the IDs of the resources this software works with
+ *
+ * @return {object} A new JSON object representing the details of a software.
+ */
 function createSoftware(name, desc, type, made, usedWithRes) {
 	return {
-		[computeID]: {
+		[computeID()]: {
 			name, desc, type, made, usedWithRes
 		}
 	}
@@ -60,3 +72,7 @@ function computeID() {
 		return v.toString(16);
 	});
 }
+
+module.exports.createProject = createProject;
+module.exports.createResource = createResource;
+module.exports.createSoftware = createSoftware;

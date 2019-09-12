@@ -1,6 +1,14 @@
-@import './breakpoints';
+@import './libs/breakpoints';
+@import './libs/arrowSVG';
 
 $box-opacity: rgba(255, 255, 255, 0.65);
+
+@mixin screen-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 
 section > div {
 	margin: 0.5rem 0;
@@ -26,26 +34,31 @@ section > div {
 	border-radius: 25px;
 	transition: ease 200ms;
 	&:hover, &:focus {
-		transform: translateY(-5px);
-		border: none !important;
-		outline: none !important;
+		transform: translateY(-2px);
 		box-shadow: 0px 3px 15px 3px lighten($box-opacity, 70%);
 		cursor: pointer;
 	}
 	.arrow {
+		@include arrowSVG;
 		position: absolute;
-		width: 25px;
-		height: 5px;
 		bottom: 10px;
 		right: 15px;
-		padding: 0.25rem;
-		background: url('../Assets/arrow.svg') no-repeat center;
-		border: none;
-		outline: none;
-		cursor: pointer;
-		transition: ease 200ms;
-		&:focus {
-			transform: rotate(180deg);
+		padding: 0.5rem;
+		> #optionsList {
+			display: none;
+			position: absolute;
+			padding: 2rem 0 0;
+		}
+		&:focus #optionsList {
+			display: block;
+			width: fit-content;
+			transform: rotateX(180deg) translate(-1rem, 3rem);
+			animation: show-dropdown 400ms ease forwards;
+			z-index: 1000;
+			.option {
+				background: #000;
+				color: aqua;
+			}
 		}
 	}
 }
@@ -55,4 +68,113 @@ section > div {
 	flex-flow: row wrap;
 	justify-content: space-between;
 	align-items: center;
+}
+
+#svgContainer {
+	@include screen-center;
+	z-index: 1000;
+	min-width: 100%;
+	min-height: 100%;
+	background-color: #101010;
+	animation: remove 2s ease forwards 4s;
+	svg {
+		@include screen-center;
+	}
+}
+
+svg path {
+	&:nth-child(1) {
+		stroke-dasharray: 317.6551513671875px;
+		stroke-dashoffset: 317.6551513671875px;
+		animation: letter-anim 1.2s ease forwards;
+	}
+	&:nth-child(2) {
+		stroke-dasharray: 183.2314453125px;
+		stroke-dashoffset: 183.2314453125px;
+		animation: letter-anim 1.2s ease forwards 0.2s;
+	}
+	&:nth-child(3) {
+		stroke-dasharray: 276.385986328125px;
+		stroke-dashoffset: 276.385986328125px;
+		animation: letter-anim 1.2s ease forwards 0.4s;
+	}
+	&:nth-child(4) {
+		stroke-dasharray: 265.8014831542969px;
+		stroke-dashoffset: 265.8014831542969px;
+		animation: letter-anim 1.2s ease forwards 0.6s;
+	}
+	&:nth-child(5) {
+		stroke-dasharray: 313.1064453125px;
+		stroke-dashoffset: 313.1064453125px;
+		animation: letter-anim 1.2s ease forwards 0.8s;
+	}
+	&:nth-child(6) {
+		stroke-dasharray: 256.27374267578125px;
+		stroke-dashoffset: 256.27374267578125px;
+		animation: letter-anim 1.2s ease forwards 1.2s;
+	}
+	&:nth-child(7) {
+		stroke-dasharray: 251.16314697265625px;
+		stroke-dashoffset: 251.16314697265625px;
+		animation: letter-anim 1.2s ease forwards 1.4s;
+	}
+	&:nth-child(8) {
+		stroke-dasharray: 457.1547546386719px;
+		stroke-dashoffset: 457.1547546386719px;
+		animation: letter-anim 1.2s ease forwards 1.6s;
+	}
+	&:nth-child(9) {
+		stroke-dasharray: 321.34588623046875px;
+		stroke-dashoffset: 321.34588623046875px;
+		animation: letter-anim 1.2s ease forwards 1.8s;
+	}
+	&:nth-child(10) {
+		stroke-dasharray: 279.06451416015625px;
+		stroke-dashoffset: 279.06451416015625px;
+		animation: letter-anim 1.2s ease forwards 2s;
+	}
+	&:nth-child(11) {
+		stroke-dasharray: 321.3474426269531px;
+		stroke-dashoffset: 321.3474426269531px;
+		animation: letter-anim 1.2s ease forwards 2.2s;
+	}
+	&:nth-child(12) {
+		stroke-dasharray: 394.7510070800781px;
+		stroke-dashoffset: 394.7510070800781px;
+		animation: letter-anim 1.2s ease forwards 2.4s;
+	}
+	&:nth-child(13) {
+		stroke-dasharray: 313.1078186035156px;
+		stroke-dashoffset: 313.1078186035156px;
+		animation: letter-anim 1.2s ease forwards 2.6s;
+	}
+	&:nth-child(14) {
+		stroke-dasharray: 183.231201171875px;
+		stroke-dashoffset: 183.231201171875px;
+		animation: letter-anim 1.2s ease forwards 2.8s;
+	}
+}
+
+.loading-in {
+	animation: load-in 1s ease forwards;
+}
+
+@keyframes letter-anim {
+	to { stroke-dashoffset: 0; }
+}
+
+@keyframes remove {
+	70% { opacity: 0; }
+	100% { opacity: 0; z-index: -500; }
+}
+
+@keyframes load-in {
+	from { transform: translateX(-100rem); }
+	to { transform: translateX(0rem); }
+}
+
+@keyframes show-dropdown {
+	0% { opacity: 0; }
+	99% { opacity: 0; }
+	100% { opacity: 1; }
 }

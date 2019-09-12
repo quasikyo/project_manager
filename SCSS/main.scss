@@ -1,28 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto&display=swap');
 
-$prim-grad-color: #3c0b42;
-$secd-grad-color: #41015f;
 $prim-color: #206f94;
 
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	&:focus {
+		outline: none !important;
+	}
 }
+
 :root {
 	min-width: 100%;
 	min-height: 100%;
 }
 
 body {
+	padding: 1rem;
 	font-family: Roboto;
 	/* Gradient pulled from: https://www.gradientmagic.com/ */
 	background: linear-gradient(to bottom left, rgb(149, 10, 155) 0%, rgb(149, 10, 155) 9%,rgb(120, 16, 136) 9%, rgb(120, 16, 136) 13%,rgb(178, 3, 174) 13%, rgb(178, 3, 174) 32%,rgb(91, 23, 117) 32%, rgb(91, 23, 117) 42%,rgb(32, 36, 79) 42%, rgb(32, 36, 79) 46%,rgb(61, 30, 98) 46%, rgb(61, 30, 98) 70%,rgb(3, 43, 60) 70%, rgb(3, 43, 60) 100%)
 }
 
-/* I don't want to bother adding the p-1 class to body every time. */
-body, .p-1 {
-	padding: 1rem;
+ul, ol {
+	list-style: none;
+}
+
+button, input[type='submit'], input[type="text"] {
+	background: none;
+	border: none;
+	outline: none;
+}
+
+input[type="text"] {
+	border-bottom: 1px white solid;
 }
 
 #mainHeader {

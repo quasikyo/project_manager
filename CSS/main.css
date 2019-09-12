@@ -6,21 +6,35 @@
   padding: 0;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 :root {
   min-width: 100%;
   min-height: 100%;
 }
 
 body {
+  padding: 1rem;
   font-family: Roboto;
   /* Gradient pulled from: https://www.gradientmagic.com/ */
   background: -webkit-gradient(linear, right top, left bottom, from(#950a9b), color-stop(9%, #950a9b), color-stop(9%, #781088), color-stop(13%, #781088), color-stop(13%, #b203ae), color-stop(32%, #b203ae), color-stop(32%, #5b1775), color-stop(42%, #5b1775), color-stop(42%, #20244f), color-stop(46%, #20244f), color-stop(46%, #3d1e62), color-stop(70%, #3d1e62), color-stop(70%, #032b3c), to(#032b3c));
   background: linear-gradient(to bottom left, #950a9b 0%, #950a9b 9%, #781088 9%, #781088 13%, #b203ae 13%, #b203ae 32%, #5b1775 32%, #5b1775 42%, #20244f 42%, #20244f 46%, #3d1e62 46%, #3d1e62 70%, #032b3c 70%, #032b3c 100%);
 }
 
-/* I don't want to bother adding the p-1 class to body every time. */
-body, .p-1 {
-  padding: 1rem;
+ul, ol {
+  list-style: none;
+}
+
+button, input[type='submit'], input[type="text"] {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+input[type="text"] {
+  border-bottom: 1px white solid;
 }
 
 #mainHeader h1 {
